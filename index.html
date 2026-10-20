@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Board Games · Reading, Vocabulary & Mediation</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#111827;--mu:#6b7280;--bd:#d1d5db;--ac:#059669;--ok:#047857;--ko:#be123c;--in:#f3f4f6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#111a2e;--tx:#f1f5f9;--mu:#94a3b8;--bd:#334155;--ac:#34d399;--ok:#6ee7b7;--ko:#fda4af;--in:#020617;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1220;--card:#111a2e;--tx:#f1f5f9;--mu:#94a3b8;--bd:#334155;--ac:#34d399;--ok:#6ee7b7;--ko:#fda4af;--in:#020617;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,Segoe UI,Arial,sans-serif;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+main{max-width:820px;margin:auto;padding:16px}
+h1{font-size:1.6rem;margin:.2em 0}h2{font-size:1.25rem;margin:.2em 0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;margin:14px 0}
+.mu{color:var(--mu);font-size:.9rem}
+input,select,textarea{font:inherit;color:var(--tx);background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:9px 11px;-webkit-user-select:text;user-select:text;max-width:100%}
+input[type=text]{width:100%;box-sizing:border-box;margin:4px 0 10px}
+textarea{width:100%;box-sizing:border-box;min-height:230px;line-height:1.6}
+button{font:inherit;font-weight:700;background:var(--ac);color:#fff;border:0;border-radius:12px;padding:11px 20px;cursor:pointer}
+button.sec{background:var(--in);color:var(--tx);border:1px solid var(--bd)}button:disabled{opacity:.5}
+.q{margin:14px 0;padding:12px;border:1px solid var(--bd);border-radius:12px}
+.opt{display:block;width:100%;text-align:left;background:var(--in);color:var(--tx);border:2px solid var(--bd);margin:6px 0;font-weight:500}
+.opt.sel{border-color:var(--ac)}.opt.ok{border-color:var(--ok);color:var(--ok)}.opt.ko{border-color:var(--ko);color:var(--ko)}
+.fb{margin-top:6px;font-size:.92rem}.ok{color:var(--ok)}.ko{color:var(--ko)}
+.hid{display:none}details{border:1px solid var(--bd);border-radius:12px;padding:8px 12px;margin:10px 0}summary{cursor:pointer;font-weight:700}
+.tag{display:inline-block;background:var(--in);border:1px solid var(--bd);border-radius:8px;padding:2px 8px;margin:3px;font-size:.88rem}
+.row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--bd)}
+.big{font-size:2.4rem;font-weight:800;color:var(--ac)}
+#wc{font-weight:700}
+@media print{button,.np{display:none!important}}
+</style></head><body><main>
+
+<section id="s0" class="card">
+<h1>🎲 Board Games</h1>
+<p class="mu">Reading · Vocabulary · Mediation. Corrección automática y nota final. Copiar y pegar están desactivados.</p>
+<label>Name</label><input type="text" id="fn" autocomplete="off" placeholder="Nombre">
+<label>Surname(s)</label><input type="text" id="ln" autocomplete="off" placeholder="Apellidos">
+<label>Group / Grupo</label><br>
+<select id="cs"><option value="">Elige…</option><option>3º ESO AB</option><option>3º ESO BC</option></select>
+<p id="e0" class="ko"></p><button onclick="start()">Start</button>
+</section>
+
+<section id="s1" class="card hid">
+<h2>1 · Reading</h2>
+<div style="font-size:1.08rem" id="txt"></div>
+<details><summary>Vocabulary help</summary><div id="rv"></div></details>
+<div id="rq"></div>
+<button onclick="gradeR()" id="rb">Check reading</button> <span id="rs" class="big"></span> <span id="rn"></span>
+</section>
+
+<section id="s2" class="card hid">
+<h2>2 · Vocabulary</h2>
+<details open><summary>Board game vocabulary</summary><div id="vl"></div></details>
+<p>Complete each sentence with the right word.</p><div id="vq"></div>
+<button onclick="gradeV()" id="vb">Check vocabulary</button> <span id="vs" class="big"></span> <span id="vn"></span>
+</section>
+
+<section id="s3" class="card hid">
+<h2>3 · Mediation</h2>
+<div class="card" style="border-color:var(--ac)" lang="es">
+<p class="mu">CARTEL · Ludoteca “El Dado Azul”</p><strong>Tardes de juegos de mesa</strong>
+<p>Todos los jueves, de 18:00 a 21:00, en la ludoteca del barrio (fundada en 1998 por la Asociación de Vecinos). Entrada gratuita para menores de 26 años; el resto paga 3 euros.</p>
+<p>Hay que reservar mesa en nuestra web antes del miércoles. Cada mesa admite de 2 a 6 personas y prestamos todos los juegos.</p>
+<p>No se puede traer comida ni bebida de fuera: tenemos bar. El último jueves de mes hay torneo de Catan con un premio de 50 euros.</p></div>
+<p><strong>Situation:</strong> Tom, your English friend (22), wants to go with two friends but doesn’t understand Spanish.</p>
+<p><strong>Write a message to Tom (about 120 words):</strong> explain when and where it is · the price for him · how to book · the rule about food · the tournament. Start with a greeting, end with a closing sentence and a farewell with your name (e.g. “Best, Ana”). You can only send it when every point is correct.</p>
+<details open><summary>Useful expressions</summary><div id="ex"></div></details>
+<ul id="chk" class="mu"></ul>
+<textarea id="med" spellcheck="false" autocomplete="off" placeholder="Hi Tom, …"></textarea>
+<p><span id="wc">0 words</span> <span class="mu">(100–170)</span></p>
+<p id="pw" class="ko"></p>
+<button onclick="gradeM()" id="mb">Check my message</button>
+<div id="mr"></div>
+</section>
+
+<section id="s4" class="card hid">
+<h2>Final report</h2>
+<div id="rep"></div>
+<p class="np mu">📸 Haz una captura de esta pantalla y envíasela a tu profesora.</p>
+<button class="np" onclick="window.print()">Print / PDF</button>
+</section>
+</main>
+<footer style="text-align:center;padding:18px 16px 28px;color:var(--mu);font-size:.9rem">© Made by Nuria Calvo Domínguez</footer>
+<script>
+var T={r:null,v:null,m:null},U={};
+var READ=["Board games are having a second life. Ten years ago, many cafés kept a dusty box of Monopoly in a corner. Now there are more than forty board game cafés in Spain, and some are full every Friday night.","Laura, 24, runs one in Zaragoza. “People are tired of screens,” she says. “At a table you look at faces, not at phones.” Customers pay three euros to play all evening, and the staff teach the rules, which is important because modern games can be complicated.","Not everybody is convinced. Some players say that games are getting too expensive: a good one costs between thirty and fifty euros. Others complain that the rulebooks are too long. However, the cafés have a solution: you can try a game before you buy it.","Schools have noticed the trend too. In a secondary school in Huesca, a teacher uses board games in her English class every second Friday. Her students must explain the rules in English before they play, and she says they speak more in one hour of play than in a whole week of exercises.","The most popular games are cooperative: instead of competing, the players win or lose together. Laura thinks this is not a coincidence. “Nobody likes losing alone,” she laughs."];
+var RV=[["screen","pantalla"],["rules","reglas"],["rulebook","libro de instrucciones"],["to compete","competir"],["cooperative","cooperativo"],["to complain","quejarse"],["expensive","caro"],["to be convinced","estar convencido"],["trend","tendencia"],["to notice","darse cuenta"]];
+var RQ=[
+{t:"m",q:"Why are board game cafés successful?",c:"People want to spend time together without screens.",o:["Games are cheaper than films.","Laura gives free drinks.","Children are not allowed to play."],x:"Paragraph 2: “tired of screens”."},
+{t:"t",q:"Customers pay for each game separately.",c:"FALSE",x:"They pay three euros to play all evening."},
+{t:"g",q:"Customers pay ___ euros to play all evening.",a:["3","three"],x:"Paragraph 2."},
+{t:"m",q:"What problem do some players mention?",c:"Good games can be expensive.",o:["The cafés close too early.","There are no games for adults.","The staff don’t know the rules."],x:"Paragraph 3."},
+{t:"t",q:"Laura plays at her café every Friday night.",c:"NOT GIVEN",x:"The text says the cafés are full on Fridays, not that Laura plays."},
+{t:"t",q:"The students in Huesca explain the rules in Spanish.",c:"FALSE",x:"Paragraph 4."},
+{t:"m",q:"What are cooperative games?",c:"Games where players win or lose together.",o:["Games for two players only.","Games played on phones.","Games without rules."],x:"Paragraph 5."}];
+var VQ=[["Roll the ___ and move your piece.","dice"],["It’s your ___: pick a card.","turn"],["Read the ___ before we start.","rules"],["He ___ by hiding a card in his sleeve.","cheated"],["The team with the most points ___ the game.","wins"],["A game where everybody works together is ___.","cooperative"]];
+var VB=["dice","turn","rules","cheated","wins","cooperative","board","pawn"];
+var VL=[["board","tablero"],["dice","dados"],["card","carta"],["pawn / piece","ficha"],["turn","turno"],["to cheat","hacer trampas"],["to shuffle","barajar"],["to roll","lanzar (dados)"],["to draw a card","robar una carta"],["tournament","torneo"],["to book a table","reservar mesa"],["prize","premio"]];
+var EX=["I’ve just read a poster about…","It’s on every Thursday from… to…","It’s free for people under 26, but you pay…","You have to book a table on their website before…","Make sure you…","You can’t bring…, because…","On the last Thursday of the month there’s a tournament with a prize of…","Let me know if…","Hope that helps! / See you on…"];
+var PTS=[["Cuándo y dónde (jueves, 18:00–21:00)",["thursday","6","9","six","nine","evening","every week"]],["Precio para él (gratis < 26 / 3 €)",["free","under 26","3 euros","three euros","no charge"]],["Cómo reservar (web, antes del miércoles)",["book","reserve","website","web","before wednesday","booking"]],["Norma de la comida",["food","drink","not allowed","can't bring","cannot bring","outside","bar"]],["Torneo de Catan y premio",["tournament","catan","50","fifty","prize"]]];
+var AVOID=["1998","association","founded"];
+var CONN=["however","but","because","so","also","and","in addition","first","then","finally","if","although","besides","for example","therefore","moreover","as well","what is more","on top of that"];
+var SP=[" que "," los "," las "," del "," con "," para "," por "," pero "," muy "," también "," hay "," entrada "," jueves "," reservar "];
+function $(i){return document.getElementById(i)}
+function show(n){["s0","s1","s2","s3","s4"].forEach(function(i){$(i).classList.add("hid")});$("s"+n).classList.remove("hid");window.scrollTo(0,0)}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function nrm(s){return(s||"").toLowerCase().replace(/[’`]/g,"'").trim()}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function tags(l){return l.map(function(x){return '<span class="tag">'+esc(x)+'</span>'}).join("")}
+function start(){
+ var f=$("fn").value.trim(),l=$("ln").value.trim(),c=$("cs").value;
+ if(!f||!l||!c){$("e0").textContent="Escribe tu nombre, apellidos y curso.";return}
+ U={f:f,l:l,c:c};
+ $("txt").innerHTML=READ.map(function(p){return"<p>"+esc(p)+"</p>"}).join("");
+ $("rv").innerHTML=RV.map(function(v){return"<p><strong>"+v[0]+"</strong> — "+v[1]+"</p>"}).join("");
+ RQ.forEach(function(q){q.sh=q.t=="m"?shuf([q.c].concat(q.o)):q.t=="t"?["TRUE","FALSE","NOT GIVEN"]:null;q.v=""});
+ $("rq").innerHTML=RQ.map(function(q,i){
+  var b=q.sh?q.sh.map(function(o){return'<button class="opt" data-i="'+i+'" onclick="pick(this)">'+esc(o)+"</button>"}).join(""):'<input type="text" id="g'+i+'" autocomplete="off" placeholder="your answer">';
+  return'<div class="q" id="q'+i+'"><strong>'+(i+1)+". "+esc(q.q)+"</strong>"+b+'<div class="fb" id="f'+i+'"></div></div>'}).join("");
+ $("vl").innerHTML=tags(VL.map(function(v){return v[0]+" = "+v[1]}));
+ $("vq").innerHTML=VQ.map(function(q,i){var p=q[0].split("___");
+  return'<div class="q" id="vq'+i+'">'+(i+1)+". "+esc(p[0])+'<select id="vs'+i+'"><option value="">—</option>'+shuf(VB).map(function(w){return"<option>"+w+"</option>"}).join("")+"</select>"+esc(p[1])+'<div class="fb" id="vf'+i+'"></div></div>'}).join("");
+ $("ex").innerHTML=tags(EX);
+ $("chk").innerHTML=PTS.map(function(p,i){return'<li id="p'+i+'">⬜ '+p[0]+"</li>"}).join("");
+ live();show(1)}
+function pick(b){var q=RQ[b.dataset.i];if(b.disabled)return;q.v=b.textContent;
+ [].forEach.call(b.parentElement.querySelectorAll(".opt"),function(x){x.classList.remove("sel")});b.classList.add("sel")}
+function gradeR_old(){var ok=0;
+ RQ.forEach(function(q,i){var v=q.t=="g"?$("g"+i).value:q.v;
+  var good=q.t=="g"?q.a.indexOf(nrm(v))>-1:nrm(v)==nrm(q.c);if(good)ok++;
+  var cor=q.t=="g"?q.a.join(" / "):q.c;
+  $("f"+i).innerHTML='<span class="'+(good?"ok":"ko")+'">'+(good?"✔ Correct. ":"✘ Answer: "+esc(cor)+". ")+"</span>"+esc(q.x);
+  [].forEach.call($("q"+i).querySelectorAll(".opt"),function(b){b.disabled=true;if(nrm(b.textContent)==nrm(q.c))b.classList.add("ok");else if(b.classList.contains("sel"))b.classList.add("ko")});
+  if($("g"+i))$("g"+i).readOnly=true});
+ U.r=Math.round(ok/RQ.length*100);U.rr=ok+"/"+RQ.length;
+ $("rs").textContent=U.r+"%";$("rb").disabled=true;$("rb").insertAdjacentHTML("afterend",' <button onclick="show(2)">Next →</button>')}
+function gradeV_old(){var ok=0;
+ VQ.forEach(function(q,i){var v=$("vs"+i).value,g=v==q[1];if(g)ok++;
+  $("vf"+i).innerHTML='<span class="'+(g?"ok":"ko")+'">'+(g?"✔":"✘ Answer: "+q[1])+"</span>";$("vs"+i).disabled=true});
+ U.v=Math.round(ok/VQ.length*100);U.vr=ok+"/"+VQ.length;
+ $("vs").textContent=U.v+"%";$("vb").disabled=true;$("vb").insertAdjacentHTML("afterend",' <button onclick="show(3)">Next →</button>')}
+function wc(t){return(t.toLowerCase().match(/[a-zà-ÿ'’-]+/g)||[]).length}
+function has(t,k){return(" "+t+" ").indexOf(k)>-1}
+function live_old(){var t=nrm($("med").value),n=wc($("med").value);$("wc").textContent=n+" words";
+ PTS.forEach(function(p,i){var h=n>3&&p[1].some(function(k){return t.indexOf(k)>-1});$("p"+i).innerHTML=(h?"✅ ":"⬜ ")+p[0]})}
+function gradeM_old(){var raw=$("med").value,t=nrm(raw),n=wc(raw);
+ if(n<25){$("pw").textContent="Escribe tu mensaje primero (mínimo 25 palabras).";return}
+ var missing=PTS.filter(function(p){return!p[1].some(function(k){return t.indexOf(k)>-1})});
+ var bad=AVOID.filter(function(k){return t.indexOf(k)>-1}),sp=SP.filter(function(k){return(" "+t+" ").indexOf(k)>-1});
+ var conn=CONN.filter(function(k){return has(t.replace(/[.,;:!?]/g," "),k)}).length;
+ var C=[
+ ["Length (100–170 words)",n>=100&&n<=170,"You wrote "+n+" words."],
+ ["All five points covered",!missing.length,missing.length?"Missing: "+missing.map(function(p){return p[0]}).join(" · "):"All covered."],
+ ["Left out what Tom doesn’t need",!bad.length,bad.length?"Remove irrelevant details (founding year / association).":"Good selection."],
+ ["Own English, no Spanish",!sp.length,sp.length?"Spanish words found: "+sp.join(",").trim():"Good."],
+ ["Greeting (Hi/Hello Tom)",/^\s*(hi|hello|hey|dear)\s+tom/i.test(raw),"Start with “Hi Tom,”."],
+ ["Closing + name",/(see you|let me know|hope that helps|best|cheers|take care|love|enjoy)[^]*$/i.test(raw.slice(-110)),"End with e.g. “See you on Thursday, [name]”."],
+ ["Context (where the info comes from)",/(poster|notice|sign|flyer|read|saw|found|looked)/i.test(raw),"Say you’ve read a poster / notice."],
+ ["Connectors (at least 3)",conn>=3,"Connectors used: "+conn+"."]];
+ var ok=C.filter(function(c){return c[1]}).length;U.m=Math.round(ok/C.length*100);U.mr=ok+"/"+C.length;U.mp=ok==C.length;
+ $("med").readOnly=true;$("mb").disabled=true;
+ $("mr").innerHTML=C.map(function(c){return'<div class="q"><strong class="'+(c[1]?"ok":"ko")+'">'+(c[1]?"✔ ":"✘ ")+c[0]+'</strong><div class="mu">'+esc(c[2])+"</div></div>"}).join("")+
+ '<p class="big">'+U.m+'%</p><button onclick="report()">See final report →</button>'}
+function report_old(){
+ var fin=Math.round(U.r*.4+U.v*.2+U.m*.4),mark=(fin/10).toFixed(1),d=new Date().toLocaleString("en-GB",{dateStyle:"short",timeStyle:"short"});
+ function r(a,b){return'<div class="row"><span>'+a+'</span><strong>'+b+"</strong></div>"}
+ $("rep").innerHTML='<p><strong style="font-size:1.3rem">'+esc(U.f)+" "+esc(U.l)+'</strong></p>'+r("Course / Curso",esc(U.c))+r("Topic","Board games")+r("Date",d)+
+ r("Reading (40%)",U.r+"% ("+U.rr+")")+r("Vocabulary (20%)",U.v+"% ("+U.vr+")")+r("Mediation (40%)",U.m+"% ("+U.mr+" criteria)")+
+ '<p style="text-align:center"><span class="big">'+mark+" / 10</span><br>Final score: "+fin+"% — "+(fin>=50?'<span class="ok">✅ Passed</span>':'<span class="ko">⚠️ Not passed</span>')+"</p>";
+ show(4)}
+function FMT(raw){var s=raw.trim();return[
+["Greeting (Hi Tom,)",/^\s*(hi|hello|hey|dear)\s+tom\b/i.test(raw)],
+["Closing sentence (Let me know…, Hope that helps…)",/(let me know|hope that helps|hope this helps|any questions|just ask|enjoy|have fun|have a great|tell me)/.test(s.slice(-200).toLowerCase())],
+["Farewell + your name (Best, Ana)",/(best wishes|best regards|kind regards|best|cheers|see you|take care|love|regards|all the best|speak soon|talk soon)/.test(s.slice(-90).toLowerCase())&&/[,\n]\s*[A-ZÀ-Ý][a-zà-ÿ]+(?:\s+[A-ZÀ-Ý][a-zà-ÿ]+)?\s*[.!]?$/.test(s)]]}
+function live(){var raw=$("med").value,t=nrm(raw),n=wc(raw);$("wc").textContent=n+" words";
+ var h=PTS.map(function(p){return[p[0],n>3&&p[1].some(function(k){return t.indexOf(k)>-1})]}).concat(FMT(n>3?raw:"").map(function(f){return[f[0],n>3&&f[1]]}));
+ $("chk").innerHTML=h.map(function(p){return"<li>"+(p[1]?"✅ ":"⬜ ")+p[0]+"</li>"}).join("")}
+function gradeR(){U.ra=(U.ra||0)+1;var ok=0,pend=0;
+ RQ.forEach(function(q,i){if(q.d){ok++;return}
+  var v=q.t=="g"?$("g"+i).value:q.v,good=q.t=="g"?q.a.indexOf(nrm(v))>-1:nrm(v)==nrm(q.c),f=$("f"+i);
+  if(good){q.d=1;ok++;f.innerHTML='<span class="ok">✔ Correct. </span>'+esc(q.x)}else{pend++;f.innerHTML='<span class="ko">✘ Not correct. </span>'+esc(q.x)}
+  [].forEach.call($("q"+i).querySelectorAll(".opt"),function(b){b.disabled=true;if(good&&nrm(b.textContent)==nrm(q.c))b.classList.add("ok");else if(b.classList.contains("sel"))b.classList.add("ko")});
+  if($("g"+i))$("g"+i).readOnly=true});
+ if(U.r==null){U.r=Math.round(ok/RQ.length*100);U.rr=ok+"/"+RQ.length}
+ $("rs").textContent=U.r+"% (1st attempt)";var b=$("rb");
+ if(pend){b.textContent="Repeat the ones I missed ("+pend+")";b.onclick=retryR}
+ else{b.classList.add("hid");$("rn").innerHTML='<button onclick="show(2)">Next →</button> <span class="ok">All correct ✔</span>'}}
+function retryR(){RQ.forEach(function(q,i){var bx=$("q"+i);if(q.d){bx.classList.add("hid");return}
+  q.v="";
+  if(q.t=="g"){$("g"+i).value="";$("g"+i).readOnly=false}
+  else{q.sh=shuf(q.sh);[].forEach.call(bx.querySelectorAll(".opt"),function(b){b.remove()});
+   bx.querySelector("strong").insertAdjacentHTML("afterend",q.sh.map(function(o){return'<button class="opt" data-i="'+i+'" onclick="pick(this)">'+esc(o)+"</button>"}).join(""))}
+  $("f"+i).innerHTML='<span class="mu">Hint: '+esc(q.x)+"</span>"});
+ var b=$("rb");b.textContent="Check again";b.onclick=gradeR;window.scrollTo(0,0)}
+function gradeV(){U.va=(U.va||0)+1;var ok=0,pend=0;
+ VQ.forEach(function(q,i){if(q.d){ok++;return}var s=$("vs"+i),g=s.value==q[1];
+  if(g){q.d=1;ok++}else pend++;s.disabled=true;
+  $("vf"+i).innerHTML=g?'<span class="ok">✔ Correct</span>':'<span class="ko">✘ Not correct</span>'});
+ if(U.v==null){U.v=Math.round(ok/VQ.length*100);U.vr=ok+"/"+VQ.length}
+ $("vs").textContent=U.v+"% (1st attempt)";var b=$("vb");
+ if(pend){b.textContent="Repeat the ones I missed ("+pend+")";b.onclick=retryV}
+ else{b.classList.add("hid");$("vn").innerHTML='<button onclick="show(3)">Next →</button> <span class="ok">All correct ✔</span>'}}
+function retryV(){VQ.forEach(function(q,i){var bx=$("vq"+i);if(q.d){bx.classList.add("hid");return}
+  $("vs"+i).disabled=false;$("vs"+i).value="";$("vf"+i).innerHTML=""});
+ var b=$("vb");b.textContent="Check again";b.onclick=gradeV;window.scrollTo(0,0)}
+function gradeM(){var raw=$("med").value,t=nrm(raw),n=wc(raw);
+ if(n<25){$("pw").textContent="Escribe tu mensaje primero (mínimo 25 palabras).";return}
+ $("pw").textContent="";U.ma=(U.ma||0)+1;
+ var missing=PTS.filter(function(p){return!p[1].some(function(k){return t.indexOf(k)>-1})});
+ var bad=AVOID.filter(function(k){return t.indexOf(k)>-1}),sp=SP.filter(function(k){return(" "+t+" ").indexOf(k)>-1});
+ var conn=CONN.filter(function(k){return has(t.replace(/[.,;:!?]/g," "),k)}).length,F=FMT(raw);
+ var C=[
+ ["Length (100–170 words)",n>=100&&n<=170,"You wrote "+n+" words."],
+ ["All five points covered",!missing.length,missing.length?"Missing: "+missing.map(function(p){return p[0]}).join(" · "):"All covered."],
+ ["Left out what Tom doesn’t need",!bad.length,bad.length?"Remove irrelevant details (founding year / association).":"Good selection."],
+ ["Own English, no Spanish",!sp.length,sp.length?"Spanish words found: "+sp.join(",").trim():"Good."],
+ ["Greeting at the start",F[0][1],"Start with “Hi Tom,”."],
+ ["Closing sentence",F[1][1],"Add a closing sentence: “Let me know if… / Hope that helps!”"],
+ ["Farewell and your name",F[2][1],"End with e.g. “See you on Thursday, Ana” or “Best, Ana” (comma + your name with a capital letter)."],
+ ["Context (where the info comes from)",/(poster|notice|sign|flyer|read|saw|found|looked)/i.test(raw),"Say you’ve read a poster / notice."],
+ ["Connectors (at least 3)",conn>=3,"Connectors used: "+conn+"."]];
+ var ok=C.filter(function(c){return c[1]}).length,all=ok==C.length;
+ if(U.m==null){U.m=Math.round(ok/C.length*100);U.mr=ok+"/"+C.length}
+ $("mr").innerHTML=C.map(function(c){return'<div class="q"><strong class="'+(c[1]?"ok":"ko")+'">'+(c[1]?"✔ ":"✘ ")+c[0]+'</strong>'+(c[1]?"":'<div class="mu">'+esc(c[2])+"</div>")+"</div>"}).join("")+
+  (all?'<p class="ok"><strong>100% ✔ Ready to send.</strong></p><button onclick="report()">See final report →</button>'
+   :'<p class="ko"><strong>'+ok+"/"+C.length+" criteria. You can only send it when all are correct: edit your message above and check again.</strong></p>");
+ if(all){$("med").readOnly=true;$("mb").classList.add("hid")}else $("mb").textContent="Check again"}
+function report(){
+ var fin=Math.round(U.r*.4+U.v*.2+U.m*.4),mark=(fin/10).toFixed(1),d=new Date().toLocaleString("en-GB",{dateStyle:"short",timeStyle:"short"});
+ function r(a,b){return'<div class="row"><span>'+a+'</span><strong>'+b+"</strong></div>"}
+ $("rep").innerHTML='<p><strong style="font-size:1.3rem">'+esc(U.f)+" "+esc(U.l)+'</strong></p>'+r("Group / Grupo",esc(U.c))+r("Topic","Board games")+r("Date",d)+
+ r("Reading (40%)",U.r+"% · "+U.rr+" · attempts: "+U.ra)+r("Vocabulary (20%)",U.v+"% · "+U.vr+" · attempts: "+U.va)+r("Mediation (40%)",U.m+"% · "+U.mr+" · attempts: "+U.ma)+
+ '<p class="mu">Scores = first attempt. All tasks completed at 100% after repeating the mistakes.</p>'+
+ '<p style="text-align:center"><span class="big">'+mark+" / 10</span><br>Final score: "+fin+"% — "+(fin>=50?'<span class="ok">✅ Passed</span>':'<span class="ko">⚠️ Not passed</span>')+"</p>";
+ show(4)}
+["copy","cut","paste","contextmenu","dragstart","drop","selectstart"].forEach(function(e){document.addEventListener(e,function(ev){ev.preventDefault();if(e=="paste"||e=="drop")$("pw").textContent="⛔ Pegar está desactivado: escríbelo tú."})});
+document.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&["c","v","x","a"].indexOf(e.key.toLowerCase())>-1)e.preventDefault()});
+$("med").addEventListener("input",live);
+</script></body></html>
